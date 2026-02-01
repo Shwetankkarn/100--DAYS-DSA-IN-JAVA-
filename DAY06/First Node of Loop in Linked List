@@ -1,0 +1,21 @@
+class Solution {
+    public int cycleStart(Node head) {
+       Node fast= head;
+       Node slow= head;
+       
+       while(fast!=null && fast.next!=null){
+           slow= slow.next;
+           fast= fast.next.next;
+           
+           if(slow==fast) {
+               Node temp= head;
+               while(temp!=slow){
+              slow= slow.next;
+               temp= temp.next;
+               }
+               if(slow==temp) return slow.data;
+           }
+       }
+       return -1;
+    }
+}
