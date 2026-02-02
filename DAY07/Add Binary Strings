@@ -1,0 +1,53 @@
+
+class Solution {
+    public String addBinary(String s1, String s2) {
+        
+        String ans= "";
+        int i= s1.length()-1;
+        int j= s2.length()-1;
+        int carry=0;
+        
+        while(i>=0 || j>=0){
+            int count=0;
+            if(i>=0 && s1.charAt(i)=='1') count++;
+             if(j>=0 && s2.charAt(j)=='1') count++;
+             
+             if(count+carry ==0){
+                 ans+= '0';
+                 carry=0;
+             }
+             
+               else if(count+carry ==1){
+                 ans+= '1';
+                 carry=0;
+             }
+             
+               else if(count+carry ==2){
+                 ans+= '0';
+                 carry=1;
+             }
+              else if(count+carry ==3){
+                 ans+= '1';
+                 carry=1;
+             }
+             i--;
+             j--;
+        }
+        if(carry==1){
+            ans+='1';
+        }
+        
+        String str= ans;
+        StringBuilder sb= new StringBuilder(str);
+        
+       sb.reverse();
+        
+        while(sb.charAt(0)=='0'){
+            sb.deleteCharAt(0);
+            
+           
+        }
+        
+         return sb.toString();
+    }
+}
