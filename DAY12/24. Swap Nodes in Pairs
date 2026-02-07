@@ -1,0 +1,41 @@
+class Solution {
+    public ListNode swapPairs(ListNode head) {
+        ListNode d1= new ListNode(-1);
+        ListNode d2= new ListNode(-1);
+        ListNode t1= d1;
+        ListNode t2= d2;
+        ListNode t= head;
+        int pos=0;
+
+        while(t!=null){
+            if(pos%2!=0){
+                t1.next=t;
+                t1= t1.next;
+            }
+            else{
+                t2.next=t;
+                t2= t2.next;
+            }
+            pos++;
+            t= t.next;
+        }
+        t1.next= null;
+        t2.next= null;
+        ListNode i= d1.next;
+        ListNode j= d2.next;
+        ListNode d3= new ListNode(-1);
+        ListNode k= d3;
+        while(i!=null && j!=null){
+            k.next= i;
+            k= k.next;
+            i= i.next;
+
+            k.next= j;
+            k=k.next;
+            j= j.next;
+        }
+        if(i==null) k.next=j;
+        else k.next=i;
+        return d3.next;
+    }
+}
