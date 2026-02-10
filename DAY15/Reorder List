@@ -1,0 +1,65 @@
+class Solution {
+    void reorderlist(Node head) {
+       Node temp= head;
+       Node slow= head;
+       Node fast= head;
+       
+       
+       while(fast!=null && fast.next!=null){
+           slow= slow.next;
+           fast= fast.next.next;
+       }
+       Node b= slow.next;
+         slow.next= null;
+       
+       Node prev= null;
+       Node fwd= null;
+       Node curr= b;
+       
+       while(curr!=null){
+           fwd= curr.next;
+           curr.next= prev;
+           prev= curr;
+           curr= fwd;
+       }
+       b= prev;
+       
+        Node d1 = new Node(-1);
+        Node k = d1;
+        Node a = head;
+        
+       while(a != null && b != null){
+           k.next = a;
+            k = k.next;
+            a = a.next;
+
+            k.next = b;
+            k = k.next;
+            b = b.next;
+       }
+       if (a != null) k.next = a;
+        if (b != null) k.next = b;
+        
+        // ArrayList<Node> arr= new ArrayList<>();
+        // Node temp= head;
+        
+        // while(temp!=null){
+        //     arr.add(temp);
+        //     temp= temp.next;
+        // }
+        
+        // int i=0, j= arr.size()-1;
+        
+        // while(i<j){
+        //     arr.get(i).next=arr.get(j);
+            
+        //     i++;
+            
+        //     if(i==j) break;
+            
+        //     arr.get(j).next= arr.get(i);
+        //     j--;
+            
+        //      arr.get(i).next = null;
+        }
+    }
