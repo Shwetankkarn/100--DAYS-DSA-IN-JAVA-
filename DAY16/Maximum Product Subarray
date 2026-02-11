@@ -1,0 +1,32 @@
+class Solution {
+    int maxProduct(int[] arr) {
+        // code here
+        int n= arr.length;
+        int ld= 1;
+        int rd= 1;
+        int ans= arr[0];
+        
+        for(int i=0; i<n; i++){
+            
+            if(ld==0){
+                ld=1;
+            }
+            if (rd==0){
+                rd=1;
+            }
+            
+            ld= ld*arr[i];
+            rd= rd*arr[n-1-i];
+            
+            if(ld>ans){
+                ans=ld;
+            }
+            if(ans<rd){
+                ans=rd;
+            }
+          
+        }
+        return ans;
+        
+    }
+}
