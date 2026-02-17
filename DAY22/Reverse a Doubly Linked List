@@ -1,0 +1,30 @@
+class Solution {
+    public Node reverse(Node head) {
+        // code here
+        // Using 3 pointer
+        
+        // Node pre= null;
+        // Node curr= head;
+        // Node fwd= null;
+        // while(curr!=null){
+        //     fwd= curr.next;
+        //     curr.next= pre;
+        //     curr.prev= fwd;
+        //     pre= curr;
+        //     curr=fwd;
+        // }
+        // return pre;
+        
+        // USING 2 POINTER 
+        if(head.next==null) return head;
+        Node curr= head;
+        Node temp= null;
+        while(curr!=null){
+            temp= curr.prev;
+            curr.prev= curr.next;
+            curr.next= temp;
+            curr= curr.prev;
+        }
+        return temp.prev;
+    }
+}
