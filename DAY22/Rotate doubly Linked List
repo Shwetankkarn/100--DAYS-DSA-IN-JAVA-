@@ -1,0 +1,44 @@
+class Solution {
+    
+    public int length(Node head){
+        int len = 0;
+        Node temp = head;
+        while(temp != null){
+            len++;
+            temp = temp.next;
+        }
+        return len;
+    }
+        
+    public Node rotateDLL(Node head, int p) {
+        
+        if(head == null || head.next == null) return head;
+        
+        int len = length(head);
+        p = p % len;
+        if(p == 0) return head;
+        
+        Node temp = head;
+        
+        for(int i = 1; i < p; i++){
+            temp = temp.next;
+        }
+        
+        Node newHead = temp.next;
+        
+
+        temp.next = null;
+        newHead.prev = null;
+        
+
+        Node tail = newHead;
+        while(tail.next != null){
+            tail = tail.next;
+        }
+        
+        tail.next = head;
+        head.prev = tail;
+        
+        return newHead;
+    }
+}
