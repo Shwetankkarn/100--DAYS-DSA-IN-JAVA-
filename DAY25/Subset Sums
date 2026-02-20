@@ -1,0 +1,17 @@
+// User function Template for Java//User function Template for Java
+class Solution {
+    public static void subsets(int sum, int[] arr, int idx, List<Integer>list){
+          if(idx==arr.length) {
+               list.add(sum);  
+            return;
+        }
+        subsets(sum+arr[idx],arr,idx+1,list);
+        subsets(sum,arr,idx+1,list);
+    }
+    public ArrayList<Integer> subsetSums(int[] arr) {
+        // code here
+        ArrayList<Integer> list= new ArrayList<>();
+        subsets(0,arr,0,list);
+        return list;
+    }
+}
