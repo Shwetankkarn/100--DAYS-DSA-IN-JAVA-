@@ -1,0 +1,48 @@
+class Solution {
+
+   ArrayList<Integer> ans= new ArrayList<>();
+
+    public int findBottomLeftValue(TreeNode root) {
+        
+     return BottomLeft(root);
+
+    }
+
+    public static int BottomLeft(TreeNode root){
+     
+     if(root==null) return 0;
+
+     Queue<TreeNode> q= new LinkedList<>();
+
+     q.add(root);
+
+     int ans = root.val;
+
+     while(q.size()>0){
+
+         int size = q.size();
+       for(int i=0; i<size; i++){
+
+       TreeNode front=q.remove();
+
+        if (i == 0) {
+        ans = front.val;
+       }
+
+       if(front.left!=null){
+        q.add(front.left);
+       }
+
+        if(front.right!=null){
+        q.add(front.right);
+       }
+
+     }
+
+    
+     }
+
+     return ans;
+
+    }
+}
