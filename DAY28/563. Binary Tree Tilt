@@ -1,0 +1,33 @@
+
+class Solution {
+
+    int totalTilt=0;
+
+    public int findTilt(TreeNode root) {
+        
+        tilt(root);
+
+         return totalTilt;
+
+    }
+
+    public int tilt(TreeNode root){
+       
+       if(root==null) return 0;
+
+       int leftSum= tilt(root.left);
+        int rightSum= tilt(root.right);
+
+         int currentTilt = Math.abs(leftSum - rightSum);
+
+        totalTilt = totalTilt + currentTilt;
+
+        int sum = root.val + leftSum + rightSum;
+
+        return sum;
+
+
+    }
+
+
+}
