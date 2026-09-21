@@ -1,0 +1,60 @@
+class Solution {
+    public TreeNode addOneRow(TreeNode root, int val, int depth) {
+
+        if (depth == 1) {
+            TreeNode Root = new TreeNode(val);
+            Root.left = root;
+            return Root;
+        }
+
+        Queue<TreeNode> q = new LinkedList<>();
+
+        q.add(root);
+
+        int currentDepth = 1;
+
+        while (!q.isEmpty()) {
+
+            int size = q.size();
+
+            if (currentDepth == depth - 1) {
+
+                for (int i = 0; i < size; i++) {
+
+                    TreeNode front = q.remove();
+
+                    TreeNode prevleft = front.left;
+                    TreeNode prevright = front.right;
+
+                    TreeNode newLeft = new TreeNode(val);
+                    TreeNode newRight = new TreeNode(val);
+
+                    front.left = newLeft;
+                    front.right = newRight;
+
+                    newLeft.left = prevleft;
+                    newRight.right = prevright;
+                }
+
+                return root;
+            }
+
+            for (int i = 0; i < size; i++) {
+
+                TreeNode cur = q.poll();
+
+                if (cur.left != null) {
+                    q.add(cur.left);
+                }
+
+                if (cur.right != null) {
+                    q.add(cur.right);
+                }
+            }
+
+            currentDepth++;
+        }
+
+        return root;
+    }
+}
