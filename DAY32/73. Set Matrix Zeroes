@@ -1,0 +1,29 @@
+class Solution {
+     
+     HashSet<Integer> row= new HashSet<>();
+      HashSet<Integer> col= new HashSet<>();
+    public void setZeroes(int[][] arr) {
+        
+     for(int i=0; i<arr.length; i++){
+        for(int j=0; j<arr[0].length; j++){
+            if(arr[i][j]==0){
+             row.add(i);
+             col.add(j);
+            }
+        }
+     }
+
+     for(int rows: row){
+        for(int j=0; j<arr[0].length; j++){
+            arr[rows][j]=0;
+        }
+     }
+      
+       for(int cols: col){
+        for(int i=0; i<arr.length; i++){
+            arr[i][cols]=0;
+        }
+     }
+
+    }
+}
