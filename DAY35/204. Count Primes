@@ -1,0 +1,58 @@
+// METHOD:01
+
+class Solution {
+    public int countPrimes(int n) {
+        boolean[] isComposite = new boolean[n];
+
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (isComposite[i]) {
+                continue;
+            }
+
+            for (int j = i * i; j < n; j = j + i) {
+                isComposite[j] = true;
+            }
+        }
+
+        int count = 0;
+
+        for (int i = 2; i < n; i++) {
+            if (!isComposite[i]) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+}
+
+// METHOD -02
+
+// class Solution {
+
+//     public boolean isPrime(int num) {
+//         if (num < 2) {
+//             return false;
+//         }
+
+//         for (int i = 2; i <= Math.sqrt(num); i++) {
+//             if (num % i == 0) {
+//                 return false;
+//             }
+//         }
+
+//         return true;
+//     }
+
+//     public int countPrimes(int n) {
+//         int count = 0;
+
+//         for (int i = 2; i < n; i++) {
+//             if (isPrime(i)) {
+//                 count++;
+//             }
+//         }
+
+//         return count;
+//     }
+// }
