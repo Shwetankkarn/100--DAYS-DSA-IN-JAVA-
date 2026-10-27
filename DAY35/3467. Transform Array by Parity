@@ -1,0 +1,55 @@
+// METHOD-01
+
+// class Solution {
+//     public int[] transformArray(int[] nums) {
+
+//         int countzero= 0;
+//         int countone= 0;
+        
+//         for(int i=0; i<nums.length; i++){
+
+
+//         if(nums[i]%2==0){
+         
+//          countzero++;
+
+//         }
+
+//         else{
+//             countone++;
+//         }
+
+     
+    
+
+//         }
+
+//         for(int i=0; i<countzero; i++){
+//             nums[i]= 0;
+//         }
+
+//            for(int j=countzero; j<nums.length; j++){
+//             nums[j]= 1;
+//         }
+
+//    return nums;
+
+//     }
+// }
+
+// METHOD -02
+
+class Solution {
+    public int[] transformArray(int[] nums) {
+        int j=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]%2==0){
+               nums[j++] = 0; 
+            }
+        }
+        while(j<nums.length){
+            nums[j++] = 1;
+        }
+        return nums;
+    }
+}
