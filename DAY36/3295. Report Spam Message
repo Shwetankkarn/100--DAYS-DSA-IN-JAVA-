@@ -1,0 +1,30 @@
+class Solution {
+    public boolean reportSpam(String[] message, String[] bannedWords) {
+        
+    HashSet<String> map2= new HashSet<>();
+
+    int count=0;
+
+
+     for(int j=0; j<bannedWords.length; j++){
+        map2.add(bannedWords[j]);
+    }
+
+
+    for (int i = 0; i < message.length; i++){
+
+   if (map2.contains(message[i])){
+
+     count++;
+
+     if(count==2) return true;
+
+
+      }
+
+
+    }
+
+    return false;
+}
+}
