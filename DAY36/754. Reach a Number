@@ -1,0 +1,19 @@
+class Solution {
+    public int reachNumber(int target) {
+
+        target = Math.abs(target);
+
+        int count = 0;
+        int counting = 0;
+
+        for (int i = 1; ; i++) {
+
+            count += i;
+            counting++;
+
+            if (count >= target && (count - target) % 2 == 0) {
+                return counting;
+            }
+        }
+    }
+}
