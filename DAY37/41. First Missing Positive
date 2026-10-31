@@ -1,0 +1,57 @@
+// METHOD -01 --> CYCLIC SORT 
+
+class Solution {
+    public int firstMissingPositive(int[] arr) {
+        int i=0, n= arr.length;
+        while(i<n){
+            if(arr[i]<=0 || arr[i]>n || arr[i]==i+1 || arr[i]==arr[arr[i]-1]) i++;
+        else{
+            swap(arr,i,arr[i]-1);
+        }
+         
+    }
+
+      for(int j=0; j<n; j++){
+            if(arr[j]!= j+1) return j+1;
+        }
+        return n+1;
+    }
+       public static void swap(int[]arr, int i,int idx){
+         int temp = arr[i];
+        arr[i] = arr[idx];
+        arr[idx] = temp;
+    }
+}
+
+// METHOD -02 -->HASHSET APPROACH 
+
+// class Solution {
+//     public int firstMissingPositive(int[] arr) {
+
+//         HashSet<Integer> map= new HashSet<>();
+
+//     for(int i=0; i<arr.length; i++){
+
+//      if(arr[i]>0){
+//         map.add(arr[i]);
+//      }
+
+
+//     }
+
+//       for(int i=1; i<arr.length+1; i++){
+
+//      if(!map.contains(i)){
+//         return i;
+//      }
+
+    
+  
+      
+//     }
+
+//       return arr.length + 1;
+
+
+//     }
+// }
