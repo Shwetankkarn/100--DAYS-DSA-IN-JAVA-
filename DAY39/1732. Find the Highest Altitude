@@ -1,0 +1,22 @@
+class Solution {
+    public int largestAltitude(int[] gain) {
+
+        int count= 0;
+
+        int maxCount= 0;
+        
+        for(int i=0; i<gain.length; i++){
+
+        count+= gain[i];
+
+        if(count>=maxCount){
+            maxCount= count;
+        }
+       
+        }
+
+        return maxCount;
+
+
+    }
+}
