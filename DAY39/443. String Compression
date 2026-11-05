@@ -1,0 +1,58 @@
+class Solution {
+    public int compress(char[] arr) {
+
+    StringBuilder sb= new StringBuilder();
+
+   int i=0, j=0;
+
+   while(j<arr.length){
+
+   if(arr[i]==arr[j]){
+    
+   j++;
+
+   }
+
+   else{
+
+    int freq= j-i;
+
+    sb.append(arr[i]);
+
+   if(freq>1){
+
+        sb.append(freq);
+
+
+   }
+
+
+
+    i=j;
+
+   }
+
+
+
+   }
+
+   int freq = j - i;
+
+   sb.append(arr[i]);
+
+   if(freq>1){
+
+   sb.append(freq);
+
+
+   }
+     
+
+ for(int k = 0; k < sb.length(); k++) {
+    arr[k] = sb.charAt(k);
+}
+
+return sb.length();
+
+    }
+}
