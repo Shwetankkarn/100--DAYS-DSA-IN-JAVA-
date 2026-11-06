@@ -1,0 +1,104 @@
+// METHOD-01
+
+// class Solution {
+//     public int[] countServers(int n, int[][] logs, int x, int[] queries) {
+
+//         int[] ans = new int[queries.length];
+
+//         for(int i = 0; i < queries.length; i++){
+
+//             int count = 0;
+//             boolean[] visited = new boolean[n + 1];
+
+//             for(int j = 0; j < logs.length; j++){
+
+//                 int query = queries[i] - x;
+
+//                 int serverId = logs[j][0];
+//                 int time = logs[j][1];
+
+//                 if(time >= query && time <= queries[i]){
+
+//                     if(!visited[serverId]){
+//                         count++;
+//                         visited[serverId] = true;
+//                     }
+//                 }
+//             }
+
+//             int correctTime = n - count;
+
+//             ans[i] = correctTime;
+//         }
+
+//         return ans;
+//     }
+// }
+
+// method-02
+
+class Solution {
+    public int[] countServers(int n, int[][] logs, int x, int[] queries) {
+
+        int m = logs.length;
+        int q = queries.length;
+
+        int[] ans = new int[q];
+
+        Arrays.sort(logs, (a, b) -> a[1] - b[1]);
+
+
+        Integer[] indices = new Integer[q];
+
+        for(int i = 0; i < q; i++){
+            indices[i] = i;
+        }
+        Arrays.sort(indices, (a, b) -> queries[a] - queries[b]);
+
+        int[] freq = new int[n + 1];
+
+        int left = 0;
+        int right = 0;
+
+        int active = 0;
+
+        for(int i = 0; i < q; i++){
+
+            int idx = indices[i];
+
+            int query = queries[idx];
+
+            int start = query - x;
+
+            while(right < m && logs[right][1] <= query){
+
+                int server = logs[right][0];
+
+                if(freq[server] == 0){
+                    active++;
+                }
+
+                freq[server]++;
+
+                right++;
+            }
+
+            while(left < right && logs[left][1] < start){
+
+                int server = logs[left][0];
+
+                freq[server]--;
+
+                if(freq[server] == 0){
+                    active--;
+                }
+
+                left++;
+            }
+
+            ans[idx] = n - active;
+        }
+
+        return ans;
+    }
+}
