@@ -1,0 +1,28 @@
+class Solution {
+    public int minMoves(int[] arr) {
+
+    int count=0;
+   
+    int maximum= arr[0];
+        
+   for(int i=0; i<arr.length; i++){
+
+  
+     maximum = Math.max(arr[i], maximum);
+   
+   }
+
+    for(int k=0; k<arr.length; k++){
+
+     int number= maximum- arr[k];
+
+     count+= number;
+
+    }
+
+
+   return count;
+
+
+    }
+}
