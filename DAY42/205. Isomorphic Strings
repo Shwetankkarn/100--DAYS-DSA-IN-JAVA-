@@ -1,0 +1,88 @@
+
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+
+        HashMap<Character, Character> map = new HashMap<>();
+        HashMap<Character, Character> map2 = new HashMap<>();
+
+        for(int i = 0; i < s.length(); i++) {
+
+            char a = s.charAt(i);
+            char b = t.charAt(i);
+
+            if(map.containsKey(a)) {
+                if(map.get(a) != b) return false;
+            }
+            else {
+                map.put(a, b);
+            }
+
+            if(map2.containsKey(b)) {
+                if(map2.get(b) != a) return false;
+            }
+            else {
+                map2.put(b, a);
+            }
+        }
+
+        return true;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// class Solution {
+//     public boolean isIsomorphic(String s, String t) {
+        
+//     HashMap<Character,Integer> map= new HashMap<>();
+//      HashMap<Character,Integer> map2= new HashMap<>();
+
+//     for(int i=0; i<s.length(); i++){
+
+//     if(!map.containsKey(s.charAt(i))){
+//         map.put(s.charAt(i),1);
+//     }
+
+//     else{
+//         map.put(s.charAt(i),map.get(s.charAt(i))+1);
+//     }
+
+//     }
+
+//        for(int j=0; j<t.length(); j++){
+
+//     if(!map2.containsKey(t.charAt(j))){
+//         map2.put(t.charAt(j),1);
+//     }
+
+//     else{
+//         map2.put(t.charAt(j),map2.get(t.charAt(j))+1);
+//     }
+
+//     }
+
+//     for(Integer value : map.values()) {
+//     if(!map2.containsValue(value)) {
+//         return false;
+//     }
+// }
+//    return true;
+
+//     }
+// }
