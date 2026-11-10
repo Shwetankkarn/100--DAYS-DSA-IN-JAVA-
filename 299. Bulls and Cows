@@ -1,0 +1,39 @@
+
+import java.util.*;
+
+class Solution {
+    public String getHint(String secret, String guess) {
+
+        int noOfBull = 0;
+        int noOfCows = 0;
+
+        HashMap<Character, Integer> map1 = new HashMap<>();
+        HashMap<Character, Integer> map2 = new HashMap<>();
+
+        for (int i = 0; i < secret.length(); i++) {
+
+            char s = secret.charAt(i);
+            char g = guess.charAt(i);
+
+            if (s == g) {
+                noOfBull++;
+            } 
+            else {
+                map1.put(s, map1.getOrDefault(s, 0) + 1);
+                map2.put(g, map2.getOrDefault(g, 0) + 1);
+            }
+        }
+
+        for (char key : map1.keySet()) {
+
+            if (map2.containsKey(key)) {
+
+                noOfCows += Math.min(
+                    map1.get(key),
+                    map2.get(key)
+                );
+            }
+        }
+        return noOfBull + "A" + noOfCows + "B";
+    }
+}
