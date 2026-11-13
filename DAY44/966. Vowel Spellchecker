@@ -1,0 +1,74 @@
+class Solution {
+    public String[] spellchecker(String[] wordlist, String[] queries) {
+
+        HashSet<String> map1 = new HashSet<>();
+        String[] ans = new String[queries.length];
+
+        for(int i = 0; i < wordlist.length; i++) {
+            map1.add(wordlist[i]);
+        }
+
+        for(int j = 0; j < queries.length; j++) {
+
+            if(map1.contains(queries[j])) {
+                ans[j] = queries[j];
+            }
+
+            else {
+                String lower = queries[j].toLowerCase();
+                boolean found = false;
+
+                for(int i = 0; i < wordlist.length; i++) {
+
+                    if(wordlist[i].toLowerCase().equals(lower)) {
+                        ans[j] = wordlist[i];
+                        found = true;
+                        break;
+                    }
+
+                    else {
+                        String w = wordlist[i].toLowerCase();
+
+                        if(w.length() != lower.length()) {
+                            continue;
+                        }
+
+                        boolean match = true;
+
+                        for(int k = 0; k < lower.length(); k++) {
+
+                            char a = w.charAt(k);
+                            char b = lower.charAt(k);
+
+                            if(a == b) {
+                                continue;
+                            }
+
+                            else if((a=='a' || a=='e' || a=='i' || a=='o' || a=='u') &&
+                                    (b=='a' || b=='e' || b=='i' || b=='o' || b=='u')) {
+                                continue;
+                            }
+
+                            else {
+                                match = false;
+                                break;
+                            }
+                        }
+
+                        if(match) {
+                            ans[j] = wordlist[i];
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+
+                if(!found) {
+                    ans[j] = "";
+                }
+            }
+        }
+
+        return ans;
+    }
+}
